@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive CSS Grid Layout</title>
+    <style>
+        /* 1. RESET CSS CƠ BẢN */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        /* 2. THIẾT LẬP LƯỚI CSS GRID CHO MÀN HÌNH DESKTOP */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            grid-template-rows: auto auto 1fr auto;
+            grid-template-areas: 
+                "header  header"
+                "nav     nav"
+                "sidebar main"
+                "footer  footer";
+            min-height: 100vh;
+            gap: 12px;
+            padding: 12px;
+        }
+
+        /* 3. ĐỊNH DẠNG TỪNG THÀNH PHẦN GRID AREA */
+        header {
+            grid-area: header;
+            background-color: #1e293b;
+            color: #ffffff;
+            padding: 24px;
+            text-align: center;
+            border-radius: 8px;
+        }
+
+        nav {
+            grid-area: nav;
+            background-color: #3b82f6;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        aside {
+            grid-area: sidebar;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        main {
+            grid-area: main;
+            background-color: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            grid-area: footer;
+            background-color: #0f172a;
+            color: #94a3b8;
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* 4. MEDIA QUERY RESPONSIVE CHO MÀN HÌNH MOBILE (< 768px) */
+        @media (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+                grid-template-areas: 
+                    "header"
+                    "nav"
+                    "main"
+                    "sidebar"
+                    "footer";
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="grid-container">
+        <!-- HEADER -->
+        <header>
+            <h1>Trang Tin Tức Công Nghệ</h1>
+            <p>Bố cục Responsive với CSS Grid Layout</p>
+        </header>
+
+        <!-- NAVIGATION -->
+        <nav>
+            <ul>
+                <li><a href="#">Trang chủ</a></li>
+                <li><a href="#">Tin tức</a></li>
+                <li><a href="#">Sản phẩm</a></li>
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </nav>
+
+        <!-- SIDEBAR -->
+        <aside>
+            <h3>Sidebar</h3>
+            <p style="margin-top: 10px; font-size: 0.9rem; color: #64748b;">
+                Chứa nội dung phụ như danh mục, tin nổi bật, bài viết liên quan hoặc quảng cáo.
+            </p>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main>
+            <h2>Nội Dung Chính (Main Content)</h2>
+            <p style="margin-top: 12px; line-height: 1.6; color: #475569;">
+                Đây là khu vực hiển thị nội dung chính của trang web. Trên màn hình Desktop, Sidebar và Main Content đứng song song 2 cột. Khi chuyển sang giao diện Mobile (chiều rộng $\le$ 768px), các thành phần sẽ tự động chuyển sang cấu trúc 1 cột duy nhất xếp dọc linh hoạt.
+            </p>
+        </main>
+
+        <!-- FOOTER -->
+        <footer>
+            &copy; 2026 TechPortal. All rights reserved. Built with CSS Grid.
+        </footer>
+    </div>
+
+</body>
+</html>
